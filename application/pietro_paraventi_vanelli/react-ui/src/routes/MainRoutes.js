@@ -1,6 +1,7 @@
 import React from "react";
 import MainViewIndex from "../views/main";
 import PasswordChangeIndex from "../views/passwordChange";
+import RegisterIndex from "../views/register";
 
 const mainRoutes = {
   path: "/",
@@ -12,7 +13,7 @@ const mainRoutes = {
     },
     {
       path: "cadastro",
-      element: <p>Cadastro</p>,
+      element: <RegisterIndex />,
     },
     {
       path: "login",
