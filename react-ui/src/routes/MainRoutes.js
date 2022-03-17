@@ -12,7 +12,7 @@ const mainRoutes = {
       element: <p>home</p>,
     },
     {
-      path: "mudar",
+      path: "gerar",
       element: <PasswordGenerateIndex />,
     },
     {
