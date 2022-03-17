@@ -21,11 +21,12 @@ function PasswordGenerateIndex() {
         method: "POST",
         credentials: "include",
         headers: {
-            "Access-Control-Allow-Origin": true,
+          "Access-Control-Allow-Origin": true,
+          "AWS-GATEWAY-TOKEN": "Eb2UvJ2a5R3ojuJOYBylH4h1o7cQ3Q2U4ZPZjB7J",
         },
         body: JSON.stringify(values),
       });
-      console.log('result', result)
+      console.log("result", result);
     },
     validationSchema: Yup.object().shape({
       viewTimes: Yup.number()
