@@ -12,6 +12,8 @@ import {
   TextField,
   Typography,
   CircularProgress,
+  Select,
+  MenuItem,
 } from "@mui/material";
 import * as Yup from "yup";
 import axios from "axios";
@@ -20,22 +22,34 @@ import axios from "axios";
 import apiGateway from "../../endpoints/apiGetway";
 import reactUi from "../../endpoints/reactUi";
 
-
 function PasswordGenerateIndex() {
   // States
   const [url, setUrl] = useState("");
   const [submitting, setSubmitting] = useState(false);
+  const [type, setType] = useState({ value: 2, label: "Horas" });
+
+  const types = [
+    { value: 1, label: "Segundos" },
+    { value: 2, label: "Horas" },
+    { value: 3, label: "Dias" },
+  ];
 
   // Formik
   const formik = useFormik({
-    initialValues: {
-      viewTimes: 2,
-      expirationDate: "",
-    },
-    onSubmit: async (values) => {
+    initialValues: { viewTimes: 1, expirationTime: 1 },
+    onSubmit: async (values, { resetForm }) => {
       setSubmitting(true);
+      if (type.value === 2) {
+        let newValue = values.expirationTime * 3600;
+        values.expirationTime = newValue;
+      } else if (type.value === 3) {
+        let newValue = values.expirationTime * 86400;
+        values.expirationTime = newValue;
+      }
       const response = await axios.post(apiGateway.passwordGenerate, values);
+      console.log(response);
       setSubmitting(false);
+      resetForm({ viewTimes: 1, expirationTime: 1 });
       if (response.status === 200) {
         setUrl(reactUi.passwordViewUrl + response.data.body.id);
       } else {
@@ -46,15 +60,18 @@ function PasswordGenerateIndex() {
       viewTimes: Yup.number()
         .min(1, "Mínimo uma visualização")
         .required("Campo obrigatório"),
-      expirationDate: Yup.date().required("Campo obrigatório"),
+      expirationTime: Yup.number()
+        .min(1, "Número deve ser positivo maior que 0")
+        .required("Campo obrigatório"),
     }),
+    enableReinitialize: true,
   });
 
   return (
     <>
       <form onSubmit={formik.handleSubmit}>
         <Grid container justifyContent="center">
-          {/* VIEW TIMES */}
+          {/* VIEW QUANTITY */}
           <FormControl>
             <TextField
               name="viewTimes"
@@ -68,19 +85,33 @@ function PasswordGenerateIndex() {
             </FormHelperText>
           </FormControl>
 
-          {/* VIEW LIMIT DATE */}
+          {/* VIEW TIME LIMIT */}
           <FormControl>
             <TextField
-              name="expirationDate"
-              label="Data limite"
-              type="datetime-local"
+              name="expirationTime"
+              label={`Tempo limite (${type.label})`}
+              type="number"
               onChange={formik.handleChange}
-              value={formik.values.expirationDate}
-              InputLabelProps={{ shrink: true }}
+              value={formik.values.expirationTime}
             />
             <FormHelperText error>
-              {formik.touched.expirationDate && formik.errors.expirationDate}
+              {formik.touched.expirationTime && formik.errors.expirationTime}
             </FormHelperText>
+          </FormControl>
+
+          {/* TYPE OF THE TIME LIMIT */}
+          <FormControl>
+            <Select value={type.value || ""}>
+              {types.map((t) => (
+                <MenuItem
+                  key={t.value}
+                  value={t.value}
+                  onClick={() => setType(t)}
+                >
+                  {t.label}
+                </MenuItem>
+              ))}
+            </Select>
           </FormControl>
         </Grid>
 

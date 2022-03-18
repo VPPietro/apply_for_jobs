@@ -50,7 +50,7 @@ function PasswordListIndex() {
                 <TableCell>{item.addedDate}</TableCell>
                 <TableCell>{item.viewTimes}</TableCell>
                 <TableCell>{item.expirationDate}</TableCell>
-                <TableCell>{reactUi.passwordViewUrl + item.id}</TableCell>
+                <TableCell><a href={reactUi.passwordViewUrl + item.id}>{reactUi.passwordViewUrl + item.id}</a></TableCell>
               </TableRow>
             );
           })}
