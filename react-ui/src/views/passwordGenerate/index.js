@@ -135,7 +135,7 @@ function PasswordGenerateIndex() {
       {url.length > 0 && (
         <Container sx={{ backgroundColor: "#282c34", mt: 6 }}>
           <Typography sx={{ color: "white" }}>URL:</Typography>
-          <Link href={url} target="_blank">
+          <Link href={url}>
             {url}
           </Link>
         </Container>
