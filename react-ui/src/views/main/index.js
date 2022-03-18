@@ -1,9 +1,13 @@
 import React, { useContext } from "react";
+
+// Third party
 import { Outlet, useNavigate } from "react-router-dom";
+
+// Project imports
 import { MainButton, SecondaryButton } from "../../components/headerButtons";
 import { AuthContext } from "../../context/AuthContext";
-
 import "./index.css";
+
 
 function MainViewIndex() {
   const navigate = useNavigate();
@@ -16,6 +20,7 @@ function MainViewIndex() {
         <div className="App-buttons">
           <MainButton onClick={() => navigate("")}>Início</MainButton>
           <MainButton onClick={() => navigate("gerar")}>Gerar senha</MainButton>
+          <MainButton onClick={() => navigate("listar")}>Listar senhas</MainButton>
 
           <SecondaryButton onClick={auth.auth.signOut}>
             Deslogar do usuário "{auth.auth.user.username}"

@@ -1,11 +1,18 @@
 import React from "react";
 import ReactDOM from "react-dom";
+
+// Third party
+import { HashRouter } from "react-router-dom";
+
+// Project imports
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import { HashRouter } from "react-router-dom";
+
+// AWS imports
 import { Amplify } from "aws-amplify";
 import awsmobile from "./aws-exports";
+
 
 Amplify.configure(awsmobile);
 

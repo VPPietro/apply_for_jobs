@@ -1,6 +1,9 @@
 import React from "react";
+
+// Project imports
 import MainViewIndex from "../views/main";
 import PasswordGenerateIndex from "../views/passwordGenerate";
+import PasswordListIndex from "../views/passwordList";
 import PasswordViewIndex from "../views/passwordView";
 
 const mainRoutes = {
@@ -14,6 +17,10 @@ const mainRoutes = {
     {
       path: "gerar",
       element: <PasswordGenerateIndex />,
+    },
+    {
+      path: "listar",
+      element: <PasswordListIndex />,
     },
     {
       path: "senha/:id",
