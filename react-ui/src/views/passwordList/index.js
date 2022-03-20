@@ -15,14 +15,15 @@ import axios from "axios";
 import apiGateway from "../../endpoints/apiGetway";
 import reactUi from "../../endpoints/reactUi";
 
-
 function PasswordListIndex() {
   // States
   const [items, setItems] = useState([]);
 
   // Get of the passwords on the AWS Api Gateway
   useEffect(async () => {
-    let response = await axios.get(apiGateway.passwordList);
+    let response = await axios.get(apiGateway.passwordList, {
+      headers: { Authorization: process.env.REACT_UI_TOKEN },
+    });
     if (response.status === 200) {
       setItems(response.data.body.Items || []);
     }
@@ -50,7 +51,11 @@ function PasswordListIndex() {
                 <TableCell>{item.addedDate}</TableCell>
                 <TableCell>{item.viewTimes}</TableCell>
                 <TableCell>{item.expirationDate}</TableCell>
-                <TableCell><a href={reactUi.passwordViewUrl + item.id}>{reactUi.passwordViewUrl + item.id}</a></TableCell>
+                <TableCell>
+                  <a href={reactUi.passwordViewUrl + item.id}>
+                    {reactUi.passwordViewUrl + item.id}
+                  </a>
+                </TableCell>
               </TableRow>
             );
           })}
