@@ -4,6 +4,7 @@ import string
 import random
 import datetime
 
+
 def lambda_handler(event, context):
     # Seleciona tabela de usuários
     dynamodb = boto3.resource('dynamodb')

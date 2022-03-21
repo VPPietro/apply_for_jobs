@@ -2,6 +2,7 @@ import boto3
 from boto3.dynamodb.conditions import Key
 from datetime import datetime
 
+
 def lambda_handler(event, context):
     # Seleciona a table de passwords do Dynamo
     dynamodb = boto3.resource('dynamodb')
