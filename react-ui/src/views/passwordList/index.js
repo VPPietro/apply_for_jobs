@@ -21,8 +21,12 @@ function PasswordListIndex() {
 
   // Get of the passwords on the AWS Api Gateway
   useEffect(async () => {
+    console.log(process.env, 'env')
     let response = await axios.get(apiGateway.passwordList, {
-      headers: { Authorization: process.env.REACT_UI_TOKEN },
+      headers: {
+        // "Access-Control-Allow-Origin": "http://localhost:3000",
+        'x-api-key': process.env.X_API_KEY,
+      },
     });
     if (response.status === 200) {
       setItems(response.data.body.Items || []);
@@ -44,13 +48,17 @@ function PasswordListIndex() {
         </TableHead>
         <TableBody>
           {items.map((item) => {
+            let addedDate = new Date(item.addedDate);
+            addedDate = addedDate.toLocaleString();
+            let expirationTime = new Date(item.expirationTime);
+            expirationTime = expirationTime.toLocaleString();
             return (
               <TableRow key={item.id}>
                 <TableCell>{item.id}</TableCell>
                 <TableCell>{item.password}</TableCell>
-                <TableCell>{item.addedDate}</TableCell>
+                <TableCell>{addedDate}</TableCell>
                 <TableCell>{item.viewTimes}</TableCell>
-                <TableCell>{item.expirationDate}</TableCell>
+                <TableCell>{expirationTime}</TableCell>
                 <TableCell>
                   <a href={reactUi.passwordViewUrl + item.id}>
                     {reactUi.passwordViewUrl + item.id}
