@@ -21,7 +21,7 @@ function PasswordListIndex() {
 
   // Get of the passwords on the AWS Api Gateway
   useEffect(async () => {
-    console.log(process.env, 'env')
+    console.log(process.env.X_API_KEY, 'env')
     let response = await axios.get(apiGateway.passwordList, {
       headers: {
         // "Access-Control-Allow-Origin": "http://localhost:3000",
