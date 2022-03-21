@@ -46,8 +46,11 @@ function PasswordGenerateIndex() {
         let newValue = values.expirationTime * 86400;
         values.expirationTime = newValue;
       }
-      const response = await axios.post(apiGateway.passwordGenerate, values);
-      console.log(response);
+      const response = await axios.post(apiGateway.passwordGenerate, values, {
+        headers: {
+          "x-api-key": process.env.REACT_APP_X_API_KEY,
+        },
+      });
       setSubmitting(false);
       resetForm({ viewTimes: 1, expirationTime: 1 });
       if (response.status === 200) {
@@ -135,9 +138,7 @@ function PasswordGenerateIndex() {
       {url.length > 0 && (
         <Container sx={{ backgroundColor: "#282c34", mt: 6 }}>
           <Typography sx={{ color: "white" }}>URL:</Typography>
-          <Link href={url}>
-            {url}
-          </Link>
+          <Link href={url}>{url}</Link>
         </Container>
       )}
     </>

@@ -8,7 +8,6 @@ import axios from "axios";
 import apiGateway from "../../endpoints/apiGetway";
 import { Typography } from "@mui/material";
 
-
 function PasswordViewIndex() {
   const params = useParams();
 
@@ -18,7 +17,15 @@ function PasswordViewIndex() {
 
   // Get the password on the AWS Api Gateway
   useEffect(async () => {
-    let response = await axios.post(apiGateway.passwordView, { id: params.id });
+    let response = await axios.post(
+      apiGateway.passwordView,
+      { id: params.id },
+      {
+        headers: {
+          "x-api-key": process.env.REACT_APP_X_API_KEY,
+        },
+      }
+    );
     if (response.status === 200) {
       setItem(response.data || {});
     }
