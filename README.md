@@ -1,5 +1,15 @@
 # Avaliação de conhecimentos em Desenvolvimento de Software
 
+#### Projeto hospedado e disponível em:
+
+* [AWS](https://apply.pietropv.com.br)
+
+#### Desenho e comentários em:
+
+* [Miro Whiteboard](https://miro.com/app/board/uXjVOE3xEGY=/)
+
+
+
 ## Considere a seguinte necessidade:
  
 Precisamos enviar uma senha de maneira segura para um cliente. Para isso, ao invés de encaminhá-la via E-mail, SMS, Slack, etc, foi dado como solução o desenvolvimento de um sistema com as seguintes funções:
