@@ -18,9 +18,8 @@ function MainViewIndex() {
       <header className="App-header">
         <p>Pietro Paraventi Vanelli</p>
         <div className="App-buttons">
-          <MainButton onClick={() => navigate("")}>Início</MainButton>
+          <MainButton onClick={() => navigate("")}>Listar senhas</MainButton>
           <MainButton onClick={() => navigate("gerar")}>Gerar senha</MainButton>
-          <MainButton onClick={() => navigate("listar")}>Listar senhas</MainButton>
 
           <SecondaryButton onClick={auth.auth.signOut}>
             Deslogar do usuário "{auth.auth.user.username}"

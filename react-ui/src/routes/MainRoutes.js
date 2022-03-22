@@ -12,15 +12,11 @@ const mainRoutes = {
   children: [
     {
       path: "/",
-      element: <p>home</p>,
+      element: <PasswordListIndex />,
     },
     {
       path: "gerar",
       element: <PasswordGenerateIndex />,
-    },
-    {
-      path: "listar",
-      element: <PasswordListIndex />,
     },
     {
       path: "senha/:id",
