@@ -3,6 +3,9 @@
 #### Projeto hospedado e disponível em:
 
 * [AWS](https://apply.pietropv.com.br)
+* Por comodidade já foi criado um usuário verificado:<br /> 
+Usuário: <strong>acesso</strong> <br />
+Senha:   <strong>password</strong>
 
 #### Desenho e comentários em:
 
